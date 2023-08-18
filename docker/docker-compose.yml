@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+    task-list-php:
+        container_name: task-list-php
+        build:
+            context: ./php
+            args:
+                - PUID=${PUID}
+                - PGID=${PGID}
+                - INSTALL_XDEBUG=${INSTALL_XDEBUG}
+        volumes:
+            - ./../:/var/www/task-list
+        networks:
+            family:
+                aliases:
+                    - task-list-php
+        restart: always
+
+networks:
+    family:
+        external: true
